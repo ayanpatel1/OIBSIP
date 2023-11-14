@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    #converter {
+      width: 300px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #0032a8;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+        
+    }
+
+    button:hover {
+      background-color: #4972f9;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    p{
+      text-align: left;
+
+    }
+    img{
+          
+          height: 20px;      
+    }
+  </style>
+</head>
+<body>
+
+  <div id="converter">
+    
+      <p>9:30 AM &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAJVJREFUSEtjZBggwDhA9jKMWky3kB8N6iEb1A5Qlz9gYGAAYZyAmnEMsnQ/1CZHBgaGA6MWI4cAuUGtwMDAEA81aCE0PukS1NgsGbWY4lQNis/50PhshGYTugQ1sZZQPY6Ht8WU+I6ioB61GJQXKQkFoqtFSiwZmnEMKqVAGARgRR4lYkQH9ZBtcxHtcHIbAkRbgEshACitZB831XidAAAAAElFTkSuQmCC"/>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAYZJREFUSEvtVdtNw0AQnFRCOgEaICVAOqADSAfpIEkJoQGgkkAnaKwba1ntxncHin9iyXIU3+7cPPa8wEzXYiZcXIEvpnyt1EsAjwD4tPdX2SmfvD8BfJTfZ0lMAb8AeCpgLWpwE3sAm6woAybga1AkZnqSPS+rgi1LN+CB2WAH4M5Uq/hQIaEsYb3vcW/rLTAXvgeAmVxiK5+9QLSIytl17EULxjnmy5OppMwWMGOiEkkvVRgwWcBQyjauG5hbxvKVL2yhAtYSLgVLaqj32jNWUzLzi6Ow8L9v8+K2SBplI7QqSnUUMErVEi47EVSPKv66MmD5PXrSonNhz6AqWNa+oVU2x2Ltd8qk3pRRoax2rnlqDYl1wdJpNsk4IhfJH62rVmjqyGRzf4opfGSnE6s6VNptK7Cfby+rQjWOTZaNGmCxrk012VuvQ+xaYF9M+Z/Ln9tzX6G/Mrb1DwCOruEKwFvLyPUwjj6ZmffpXnqAZ2OssF3c4xYr/1XqK3CXAj2p7gLyRT+cVmEf0RN3/wAAAABJRU5ErkJggg=="/>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAKNJREFUSEvtltENgzAMBS+TQDfpJnQT6CTQSWgnKWyCLJUqChX5MbFU7E+EfMnlERMwqmDExcHFzLvqGmgUfc/A8KtfqvoNCFyzOuCeNozBN6DXJH56TcBlD9wCsrojahPi+MFfgleTL+ApSkvteD2+b9AcfFSqzVSbhet83/HujmU4jBZDQpIn8CtQKV3YD0CGxKb8D0TJcL6Nq847UnrDTPUCRmYdH0jLYvkAAAAASUVORK5CYII="/>
+      </p>
+  
+    <h2>Temperature Converter</h2>
+    
+    <label for="temperature">Temperature:</label>
+    <input type="number" id="temperature" placeholder="Enter temperature" required>
+
+    <label for="unit">Unit:</label>
+    <select id="unit" required>
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+    </select>
+
+    <button onclick="convert()">Convert</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function convert() {
+      var temperature = document.getElementById("temperature").value;
+      var unit = document.getElementById("unit").value;
+      var resultArea = document.getElementById("result");
+
+      // Validate input
+      if (isNaN(temperature)) {
+        alert("Please enter a valid number for temperature.");
+        return;
+      }
+
+      // Perform conversion
+      var result;
+      if (unit === "celsius") {
+        result = (temperature * 9/5) + 32;
+        resultArea.innerText = temperature + " Celsius is " + result.toFixed(2) + " Fahrenheit";
+      } else {
+        result = (temperature - 32) * 5/9;
+        resultArea.innerText = temperature + " Fahrenheit is " + result.toFixed(2) + " Celsius";
+      }
+    }
+  </script>
+
+</body>
+</html>
